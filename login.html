@@ -1,0 +1,17 @@
+<div ng-controller="loginCtrl">
+<form name='loginForm'>
+    
+    <h4>Log In</h4>
+    
+    <input type="email" ng-model="login.email" placeholder="email">
+    
+    <input type="password" ng-model="login.password" placeholder="password">
+    
+    <p>{{errMessage}}</p>
+    
+    <button ng-click="loginSubmit()">Submit</button>
+
+</form>
+
+<a href="#/register">Dont have a account?</a>
+</div>

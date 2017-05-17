@@ -1,0 +1,19 @@
+var app = angular.module('app',['ngRoute']);
+app.config(function($routeProvider){
+  $routeProvider
+    .when("/",{
+      templateUrl:"login.html",
+      //controller:"loginCtrl"
+    })
+    .when("/register",{
+      templateUrl:"register.html",
+      controller:"registerCtrl"
+    })
+    .when("/mainPage",{
+      templateUrl:"mainPage.html",
+      controller:"mainPageCtrl"
+    })
+    .otherwise({
+      redirecTo:"/"
+    });
+});
