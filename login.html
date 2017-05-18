@@ -13,5 +13,10 @@
 
 </form>
 
-<a href="#/register">Dont have a account?</a>
+<a href="#/register">Dont have a account?</a> <a href="" ng-click="resetShow()">forgot password?</a>
+<form ng-if="resetPassword" >
+    <input type="email" ng-model="resetEmail" placeholder="email reset">
+    <span>{{resetEmail}</span>
+    <input type="submit" ng-click="reset()">
+</form>
 </div>
