@@ -49,9 +49,14 @@ angular.module('app')
        for(var prop in rawData){
             temp.push(rawData[prop]);
        }
+        
+        temp.forEach(function(cur,ind){
+            cur.datakey=$scope.postKeys[ind];
+        })
        
        $scope.modifiedData=temp.slice(0);
        
+        
        $scope.$apply();
        
        console.log($scope.modifiedData);
@@ -118,9 +123,10 @@ angular.module('app')
     };
     
     $scope.remove = function(index){
-        var i = $scope.postKeys[index];
-        database.ref('/posts/'+$scope.userId+"/"+i).remove();
+        console.log(index);
+        database.ref('/posts/'+$scope.userId+"/"+index).remove();
         //$scope.$apply();
     }
+    
     
 })

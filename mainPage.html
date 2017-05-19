@@ -1,38 +1,70 @@
-<p>This is the Main Page</p>
-<p>Hello {{displayName}}</p>
-<p>{{userId}}</p>
+<div class="container">
+<div class="row" style="margin-top:50px">
+<div class="col-lg-8 col-lg-offset-2">
+<h2>Hello {{userId}}</h2>
 
+<button ng-click="signOut()" class="btn btn-danger" style="text-align:right">Sign Out</button>
+<br>
 <a href="" ng-click="editPro()">Edit Profile</a>
 <form id="setForm" ng-show="editProfile">
-    <input type="text" ng-model="set.name" placeholder="set name" required>
-    <input type="text" ng-model="set.gender" placeholder="set gender">
-    <input type="text" ng-model="set.age" placeholder="set age">
-    <button ng-click="setProfile()">set Profile</button>
+    <div class="form-group">
+        <label>name</label>&nbsp;<input type="text" ng-model="set.name" placeholder="set name" required class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label>gender</label><input type="text" ng-model="set.gender" placeholder="set gender" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label>age</label>&nbsp;<input type="text" ng-model="set.age" placeholder="set age" class="form-control">
+    </div>
+    
+    <button ng-click="setProfile()" class="btn btn-success">set Profile</button>
 </form>
 
-<form name="postForm" id="postForm">
-    <input type="text" ng-model="post.name" required>
-    <input type="text" ng-model="post.gender">
-    <input type="text" ng-model="post.age">
-    <button ng-click="posts()">set post</button>
+<form name="postForm" id="postForm" ng-hide="editProfile">
+    <div class="form-group">
+    
+    <input type="text" ng-model="post.name" required placeholder="post name" class="form-control">
+        
+    <input type="text" ng-model="post.gender" placeholder="post gender" class="form-control">
+        
+    <input type="text" ng-model="post.age" placeholder="post age" class="form-control">
+    
+    </div>
+        
+    <button ng-click="posts()" class="btn btn-success">set post</button>
 </form>
 
 <!--<main-data head="userId" body="modifiedData"></main-data>-->
 <h3>{{displayName}}</h3>
-<table>
+<table class="table table-striped">
+<!--
     <tr>
         <th><span><button>age</button></span></th>
         <th><span><button>gender</button></span></th>
         <th><span><button>name</button></span></th>
         <th>action</th>
     </tr>
+-->
+    
+    <tr>
+        <th>#</th>
+        <th>name</th>
+        <th>gender</th>
+        <th>age</th>
+        <th>action</th>
+    </tr>
     
     <tr ng-repeat="x in modifiedData">
-        <td>{{x.age}}</td>
-        <td>{{x.gender}}</td>
+        <td>{{$index+1}}</td>
         <td>{{x.name}}</td>
-        <td><button ng-click="remove($index)">remove {{$index}}</button></td>
+        <td>{{x.gender}}</td>
+        <td>{{x.age}}</td>
+        <td><button ng-click="remove(x.datakey)" class="btn btn-danger">remove</button></td>
     </tr>
 </table>
+</div>
+</div>
+</div>
 
-<button ng-click="signOut()">Sign Out</button>
