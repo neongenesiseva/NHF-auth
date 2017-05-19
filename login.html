@@ -8,15 +8,22 @@
     <input type="password" ng-model="login.password" placeholder="password">
     
     <p>{{errMessage}}</p>
+    <p>{{login.email}}</p>
     
     <button ng-click="loginSubmit()">Submit</button>
+    
+    <button ng-click="signInWithGoogle()">Google</button>
 
 </form>
 
 <a href="#/register">Dont have a account?</a> <a href="" ng-click="resetShow()">forgot password?</a>
-<form ng-if="resetPassword" >
+<form ng-show="resetPassword" >
+<!--    <form ng-show="resetPassword" >  -->
+<!--    this ng-if  blocks the two-way data-binding-->
+<!-- use ng-show instead of ng-if, ng-if delete all the DOM
+    the controller cant get the two-way data-binding data if the DOM
+    was reset everytime-->
     <input type="email" ng-model="resetEmail" placeholder="email reset">
-    <span>{{resetEmail}</span>
-    <input type="submit" ng-click="reset()">
+    <button ng-click="reset()">submit</button>
 </form>
 </div>

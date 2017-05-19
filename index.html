@@ -6,20 +6,22 @@
   <body>
 
     <ng-view></ng-view>
-
+      
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.4/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.4/angular-route.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-     <script>
+     <script src="firebaseInitial.js">
   // Initialize Firebase
   // TODO: Replace with your project's customized code snippet
-    var config = {
-    apiKey: "AIzaSyC_MhI1dWsOTEJEqvzmyPYbg1pxBn1Qz1s",
-    authDomain: "login2-9f5f0.firebaseapp.com",
-    databaseURL: "https://login2-9f5f0.firebaseio.com",
-    storageBucket: "login2-9f5f0.appspot.com"
-    };
-    firebase.initializeApp(config);
+//    var config = {
+//    apiKey: "AIzaSyC_MhI1dWsOTEJEqvzmyPYbg1pxBn1Qz1s",
+//    authDomain: "login2-9f5f0.firebaseapp.com",
+//    databaseURL: "https://login2-9f5f0.firebaseio.com",
+//    storageBucket: "login2-9f5f0.appspot.com"
+//    };
+//    firebase.initializeApp(config);
     </script> 
     <script src="app.js"></script>
     
@@ -30,5 +32,6 @@
       <script src="loginCtrl.js"></script>
       <script src="registerCtrl.js"></script>
       <script src="mainPageCtrl.js"></script>
+      <script src="mainPage.directive.js"></script>
   </body>
 </html>

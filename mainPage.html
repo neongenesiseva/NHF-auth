@@ -1,3 +1,38 @@
 <p>This is the Main Page</p>
-<p>Hello {{userEmail}}</p>
+<p>Hello {{displayName}}</p>
+<p>{{userId}}</p>
+
+<a href="" ng-click="editPro()">Edit Profile</a>
+<form id="setForm" ng-show="editProfile">
+    <input type="text" ng-model="set.name" placeholder="set name" required>
+    <input type="text" ng-model="set.gender" placeholder="set gender">
+    <input type="text" ng-model="set.age" placeholder="set age">
+    <button ng-click="setProfile()">set Profile</button>
+</form>
+
+<form name="postForm" id="postForm">
+    <input type="text" ng-model="post.name" required>
+    <input type="text" ng-model="post.gender">
+    <input type="text" ng-model="post.age">
+    <button ng-click="posts()">set post</button>
+</form>
+
+<!--<main-data head="userId" body="modifiedData"></main-data>-->
+<h3>{{displayName}}</h3>
+<table>
+    <tr>
+        <th><span><button>age</button></span></th>
+        <th><span><button>gender</button></span></th>
+        <th><span><button>name</button></span></th>
+        <th>action</th>
+    </tr>
+    
+    <tr ng-repeat="x in modifiedData">
+        <td>{{x.age}}</td>
+        <td>{{x.gender}}</td>
+        <td>{{x.name}}</td>
+        <td><button ng-click="remove($index)">remove {{$index}}</button></td>
+    </tr>
+</table>
+
 <button ng-click="signOut()">Sign Out</button>

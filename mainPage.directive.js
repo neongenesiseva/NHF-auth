@@ -1,0 +1,12 @@
+angular
+    .module('app')
+    .directive('mainData',function(){
+    return{
+        restrict:"A",
+        templateUrl:"mainPage.directive.html",
+        scope:{
+            head:"@",
+            body:"="
+        }
+    }
+});
