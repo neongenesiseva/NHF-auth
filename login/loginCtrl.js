@@ -5,7 +5,8 @@ app.controller('loginCtrl',function($scope,authService,$window){
     $scope.resetPassword=false;
     
     $scope.loginSubmit=function(){
-      firebase.auth().signInWithEmailAndPassword($scope.login.email,$scope.login.password)
+        
+      authService.signIn($scope.login.email,$scope.login.password)
             .then
                 (function(res){
                     console.log('enter');
@@ -24,7 +25,7 @@ app.controller('loginCtrl',function($scope,authService,$window){
     
     $scope.signInWithGoogle=function(){
         var provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
+        authService.popup(provider).then(function(result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = result.credential.accessToken;
       // The signed-in user info.
@@ -42,9 +43,9 @@ app.controller('loginCtrl',function($scope,authService,$window){
     };
     
     $scope.reset=function() {
-        console.log($scope.resetEmail);
-        firebase.auth().sendPasswordResetEmail($scope.resetEmail).then
-        (function(){alert('message sent')},
+        authService.reset($scope.resetEmail).then
+        (function(){alert('message sent');
+                   $scope.resetEmail=""},
          function(err){alert(err)});
     };
 

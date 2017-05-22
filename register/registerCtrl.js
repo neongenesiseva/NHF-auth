@@ -3,7 +3,8 @@ app
   console.log("registerCtrl");
     $scope.errMessage=""
   $scope.registerSubmit=function(){
-        firebase.auth().createUserWithEmailAndPassword($scope.regemail,$scope.regpassword)
+      
+        authService.register($scope.regemail,$scope.regpassword)
             .then(
                 function(res){
                     console.log('registered');

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('mainPageCtrl',function($scope,$location){
+    .controller('mainPageCtrl',function($scope,$location,authService,infoService){
     console.log("mainPageCtrl");
 //    firebase.auth().onAuthStateChanged(function(user){
 //        if (user){
@@ -10,19 +10,19 @@ angular.module('app')
 //        }
 //    });
     
-    if(firebase.auth().currentUser!=null){
+    if(authService.root().currentUser!=null){
         console.log('logged in')
     } else {
         alert('please log in');
         setTimeout(window.location="/",2000);
     }
     
-    var database = firebase.database();
+    var database = infoService.db();
     
-    $scope.displayName = firebase.auth().currentUser.displayName;
-    $scope.userId = firebase.auth().currentUser.uid;
+    $scope.displayName = authService.root().currentUser.displayName;
+    $scope.userId = authService.root().currentUser.uid;
     console.log($scope.userId);
-    console.log(firebase.auth().currentUser);
+    console.log(authService.root().currentUser);
     
 //Show Data prepared
     var rawData;
@@ -53,6 +53,7 @@ angular.module('app')
         temp.forEach(function(cur,ind){
             cur.datakey=$scope.postKeys[ind];
         })
+        //insert datakey into the array returned
        
        $scope.modifiedData=temp.slice(0);
        
@@ -88,10 +89,10 @@ angular.module('app')
             alert('success');
             angular.element('#setForm').trigger('reset');
             //use trigger('reset') jQuery method to clearall
-            },
-            function(err){
+                },
+                function(err){
                 alert(err);
-            }
+                }
             )
     };
     
@@ -103,7 +104,7 @@ angular.module('app')
             age:$scope.post.age
         }
         
-        var newPostKey = firebase.database().ref().child('posts').push().key;
+        var newPostKey = database.ref().child('posts').push().key;
         console.log(newPostKey);
         
         var updates = {};
@@ -112,7 +113,7 @@ angular.module('app')
         
         //firebase.database().ref().updates({'ref':'value','ref':'value'})
         
-        firebase.database().ref().update(updates).then
+        database.ref().update(updates).then
             (function(res){
                 angular.element("#postForm").trigger("reset");
             //use trigger('reset') jQuery method to clearall

@@ -2,15 +2,15 @@ var app = angular.module('app',['ngRoute']);
 app.config(function($routeProvider){
   $routeProvider
     .when("/",{
-      templateUrl:"login.html",
+      templateUrl:"login/login.html",
       controller:"loginCtrl"
     })
     .when("/register",{
-      templateUrl:"register.html",
+      templateUrl:"register/register.html",
       controller:"registerCtrl"
     })
     .when("/mainPage",{
-      templateUrl:"mainPage.html",
+      templateUrl:"mainPage/mainPage.html",
       controller:"mainPageCtrl"
     })
     .otherwise({
