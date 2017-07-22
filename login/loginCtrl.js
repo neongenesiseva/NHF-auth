@@ -4,8 +4,8 @@ app.controller('loginCtrl',function($scope,authService,$window){
     $scope.resetEmail='';
     $scope.resetPassword=false;
     
+    //sign in with 
     $scope.loginSubmit=function(){
-        
       authService.signIn($scope.login.email,$scope.login.password)
             .then
                 (function(res){
@@ -23,6 +23,7 @@ app.controller('loginCtrl',function($scope,authService,$window){
                 )
     };
     
+    //signin with google
     $scope.signInWithGoogle=function(){
         var provider = new firebase.auth.GoogleAuthProvider();
         authService.popup(provider).then(function(result) {
@@ -33,11 +34,12 @@ app.controller('loginCtrl',function($scope,authService,$window){
       // ...
     $window.location.href = '#/mainPage';
         }).
-        catch(function(error) {
+      catch(function(error) {
       console.log(error);
     });
     }
     
+    //reset password
     $scope.resetShow=function(){
         $scope.resetPassword=!$scope.resetPassword;
     };

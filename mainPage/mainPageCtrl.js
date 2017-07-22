@@ -1,15 +1,8 @@
 angular.module('app')
     .controller('mainPageCtrl',function($scope,$location,authService,infoService){
     console.log("mainPageCtrl");
-//    firebase.auth().onAuthStateChanged(function(user){
-//        if (user){
-//            console.log(user)
-//        } else {
-//            alert('please log in')
-//            setTimeout(window.location="/",2000);
-//        }
-//    });
     
+    //check login status
     if(authService.root().currentUser!=null){
         console.log('logged in')
     } else {
@@ -29,8 +22,8 @@ angular.module('app')
     $scope.postKeys=[];
     $scope.modifiedData=[];
     
-
-   database.ref('/posts/'+$scope.userId).on('value',function(snapshot){
+    //retrive data from database
+    database.ref('/posts/'+$scope.userId).on('value',function(snapshot){
        
        rawData=snapshot.val();  
        console.log("rawData check"+rawData);
@@ -58,28 +51,18 @@ angular.module('app')
        $scope.modifiedData=temp.slice(0);
        
         
-       $scope.$apply();
+//       $scope.$digest();
        
        console.log($scope.modifiedData);
        };
    });
     
-    
+    //profile settlement
     $scope.editProfile=false;
     $scope.editPro = function(){
         $scope.editProfile=!$scope.editProfile;
-    }
-    
-    $scope.signOut = function(){
-        window.location="/";
-        firebase.auth().signOut().then(function(){
-        console.log('logged out');
-    },function(err){
-            console.log(err);
-        }
-    );
     };
-        
+    
     $scope.setProfile=function(){
         database.ref('users/'+$scope.userId).set({
             username:$scope.set.name,
@@ -96,6 +79,20 @@ angular.module('app')
             )
     };
     
+    //signout
+    $scope.signOut = function(){
+        window.location="/";
+        firebase.auth().signOut().then(function(){
+        console.log('logged out');
+    },function(err){
+            console.log(err);
+        }
+    );
+    };
+        
+    
+    
+    //add a data
     $scope.posts = function(){
         
         var postData={
@@ -123,6 +120,7 @@ angular.module('app')
         });
     };
     
+    //remove a data
     $scope.remove = function(index){
         console.log(index);
         database.ref('/posts/'+$scope.userId+"/"+index).remove();

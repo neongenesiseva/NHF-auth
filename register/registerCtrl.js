@@ -7,16 +7,15 @@ app
         authService.register($scope.regemail,$scope.regpassword)
             .then(
                 function(res){
-                    console.log('registered');
                     console.log(res);
                     alert('registered');
                     window.location="/";
                     },
                 function(err){
                     $scope.errMessage=err.message;
-                    $scope.$apply();
-                    console.log(err)}
-                 )
+                    $scope.$digest();
+                }
+            )
   };
 });
 //window.location forcely change location,
